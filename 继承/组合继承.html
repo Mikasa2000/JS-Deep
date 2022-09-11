@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组合继承</title>
+</head>
+<body>
+  <script>
+    function Father(name,age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    Father.prototype.sayHi = function() {
+      console.log('Hi');
+    }
+
+    Son.prototype = new Father(); // 原型链
+    Son.prototype.constructor = Son;
+    function Son(name,age) {
+      Father.call(this,name,age); // 盗窃superType的构造函数
+    }
+
+    let son = new Son('zs',18);
+    
+    console.log(son)
+
+
+    // a = new Array("100","2111","41111")
+    // for(var i = 0; i<a.length; i++) {
+    //   document.write(a[i] + "")
+    // }
+
+    // var data = [1,2,3]
+    // data.shift()
+    // console.log(data)
+  </script>
+</body>
+</html>

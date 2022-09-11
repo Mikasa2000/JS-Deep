@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原型式继承</title>
+</head>
+<body>
+  <script>
+   function createObject(o) {
+    function Fn() {}
+    Fn.prototype = o
+    return new Fn();
+  }
+
+  let obj1 = {
+    name:'zs'
+  }
+
+
+  let obj2 = createObject(obj1)
+  console.log(obj2)
+  </script>
+</body>
+</html>
