@@ -16,8 +16,9 @@ Function.prototype.myBind = function(thisArgs,argsArr) {
 
 
 
-function foo() {
+function foo(a,b) {
   console.log("foo被调用了");
+  console.log(a + b)
 }
 
 
