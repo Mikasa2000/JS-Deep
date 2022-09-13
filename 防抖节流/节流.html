@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function throttle(fn, interval) {
+      let lastTime = 0;
+      return function() {
+        const nowTime = new Date().getTime();
+        const remainTime = interval - (nowTime - lastTime);
+        if(remainTime <= 0) { //证明应该执行了
+          fn()
+          lastTime = nowTime;
+        }
+      }
+    }
+
+
+    function _throttle(fn,delay) {
+      let timer = null;
+      if(timer) return;
+      return function() {
+        timer = setTimeout(() => {
+          fn().apply(this, arguments);
+          timer = null;
+        },delay)
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 迭代器 可迭代对象
+    const name = ["nba","cba","abc"];
+    let index = 0;
+    let iterator = {
+      next: function() { //iterabal protoco协议  
+        if(index < name.lenght) {
+          return {done: false, value: name[index]};
+        }else {
+          return {done: true, value: undefined}
+        }
+      }
+    }
+
+
+    // const iteratorObj = {
+    //   [Symbol.iterator]: function() {
+    //     return {
+    //       next: function() {
+
+    //       }
+    //     }
+    //   }
+    // }
+
+  
+  </script>
+</body>
+</html>

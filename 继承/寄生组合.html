@@ -12,7 +12,7 @@
       function Fn(){};
       Fn.prototype = o;
       return new Fn();
-    }
+    } // 做拷贝
 
 
     function inheritPrototype(subType, superType) {
@@ -37,6 +37,7 @@
     let stu = new Student("zs",18);
     stu.sayHi()
     console.log(stu.name)
+    console.log(stu)
    
 
 

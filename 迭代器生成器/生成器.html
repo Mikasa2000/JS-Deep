@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 可实现函数暂停执行
+    function* foo() {
+      console.log(1)
+      yield
+      console.log(2)
+      yield
+      console.log(3)
+    }
+
+    const generator = foo();
+    console.log(generator.next())
+    
+
+  </script>
+</body>
+</html>

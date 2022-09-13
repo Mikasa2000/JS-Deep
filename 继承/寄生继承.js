@@ -1,3 +1,7 @@
+let person = {
+  name:'zs'
+}
+
 function createObject(o) {
   function Fn() {};
   Fn.prototype = o;
@@ -5,8 +9,10 @@ function createObject(o) {
 }
 
 
-function createAnother(orginal) {
-  let clone = createAnother(orginal);
+function createAnother(name,age) {
+  let clone = createObject(person);
+  clone.name = name;
+  clone.age = age;
   clone.sayHi = function() {
     console.log("sayHi")
   }
@@ -15,8 +21,6 @@ function createAnother(orginal) {
 }
 
 
-let person = {
-  name:'zs'
-}
+
 
 let obj1 = createAnother(person)
