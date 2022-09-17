@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原理</title>
+</head>
+<body>
+  <script>
+    function AjaxFn(url) {
+      return new Promise((resolve,reject) => {
+        resolve(url);
+      })
+    }
+
+
+    function *getData() {
+      yield AjaxFn("https://www.baidu.com");
+    }
+
+    function co() {
+      let generator = getData()
+      // 递归函数
+      function exec(res) {
+        let result = generator.next();
+        if(result.done) {
+          return result.value;
+        }
+        result.value.then(res => {
+          exec(res)
+        })
+      }
+      exec()
+    }
+  </script>
+</body>
+</html>

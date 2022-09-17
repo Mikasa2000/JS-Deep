@@ -5,32 +5,123 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>test</title>
 </head>
 
 <body>
+  <div style="height: 6000px;"></div>
   <script>
-    function Ajax(url) {
-      return new Promise((resolve, reject) => {
-        setInterval(() => {
-          resolve(url)
-        }, 2000);
-      })
+    // Function.prototype.myCall = function(thisAgs,...ags) {
+    //   let fn = this;
+    //   thisAgs = thisAgs ? Object(thisAgs) : window;
+    //   thisAgs.fn = fn;
+    //   let result = thisAgs.fn(...ags);
+    //   delete thisAgs.fn;
+    //   return result;
+    // }
+
+
+    // function foo(a,b) {
+    //   console.log('foo运行了');
+    //   console.log(a + b);
+    // }
+
+    // let obj = {
+    //   name:'zs'
+    // }
+
+
+    // foo.myCall(obj,1,2);
+
+    // Function.prototype.myApply = function(thisAgs,thisArr) {
+    //   let fn = this;
+    //   thisAgs = thisAgs ? Object(thisAgs) : window;
+    //   thisAgs.fn = fn;
+    //   thisAgs = thisAgs ? thisAgs : [];
+    //   let result = thisAgs.fn(...thisArr);
+    //   delete thisAgs.fn;
+    //   return result;
+    // }
+
+    // function foo(a,b) {
+    //   console.log("this",this);
+    //   console.log('foo已经执行了');
+    //   console.log("arr", a + b);
+    // }
+
+    // let obj = {
+    //   name:'zs'
+    // }
+
+    // foo.myApply(obj,[1,2,3,4]);
+
+
+    // Function.prototype.myBind = function (thisAgs,...args) {
+    //   let fn = this;
+    //   thisAgs = thisAgs ? Object(thisAgs) : window;
+    //   const proxyFn = function (...args2) {
+    //     let finalAgs = [...args,...args2];
+    //     thisAgs.fn = fn;
+    //     let result = thisAgs.fn(...finalAgs);
+    //     delete thisAgs.fn;
+    //     return result;
+    //   }
+    //   return proxyFn;
+    // }
+
+    // function foo(a,b) {
+    //   console.log("foo执行了");
+    //   console.log(a + b);
+    // }
+
+    // let obj = {
+    //   name: 'zs'
+    // }
+
+    // let res = foo.myBind(obj,1,2)
+    // let res2 = res(12,14)
+    // console.log(res2)
+
+    // function Ajax(e) {
+    //   console.log('发送了ajax')
+    //   console.log(this,e)
+    // }
+    // function debounce(fn,delay) {
+    //   let timer = null;
+    //   return function() {
+    //     if(timer) clearTimeout(timer);
+    //     timer = setTimeout(()=> {
+    //       fn.apply(this,arguments);
+    //     },delay)
+    //   }
+    // }
+
+    // let ipt = document.querySelector('input');
+    // ipt.addEventListener('input',debounce(Ajax,1000))
+
+    // 节流1，定时器
+    // 节流2，时间戳
+    function Ajax() {
+      console.log('发送了Ajax')
     }
 
-    function *getData() {
-      const res1 = yield Ajax("https://www.baidu.com");
-      yield Ajax(res1 + "bbbbb")
+    function throttle(fn, timeInterval) {
+      let lastTime = 0;
+      return function () {
+        let nowTime = new Date().getTime();
+        let remainTime = timeInterval - (nowTime - lastTime);
+        if (timeInterval <= 0) {
+          fn();
+          lastTime = nowTime;
+        }
+      }
     }
 
-    let generator = getData();
-    generator.next().value.then(res => {
-      // console.log(res)
-     
-      generator.next(res).value.then(res => {
-        console.log(res)
-      })
-    })
+    // let ipt = document.querySelector('');
+    window.addEventListener('scroll', throttle(Ajax, 1))
+
+
+
   </script>
 </body>
 

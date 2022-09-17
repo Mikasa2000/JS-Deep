@@ -16,17 +16,20 @@
       })
     }
 
+    // 迭代器对象
     function *getData() {
       const res = yield Ajax("https://www.baidu.com")
+      const res1 = yield Ajax(res + "1111")
+      const res2 = yield Ajax(res1 + "22222")
+      console.log(res2)
     }
 
 
-    function execGenerator(genFn) {
-      const generator = genFn()
+    function co(getData) {
+      const generator = getData()
       // 递归函数
       function exec(res) {
         const result = generator.next(res)
-        console.log(result)
         if(result.done) { // 如果结束为真
           return result.value
         }
@@ -34,12 +37,12 @@
           exec(res)
         })
         
-      }
+      } 
       exec()
     }
 
 
-    execGenerator(getData)
+    co(getData)
 
   </script>
 </body>

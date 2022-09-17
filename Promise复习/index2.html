@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./Promise2.js"></script>
+</head>
+<body>
+  <script>
+    const p = new Promise((resolve,reject) => {
+      // resolve("ok");
+      // throw new Error("error 1111")
+      setTimeout(() => {
+        resolve("ok");
+      },2000);
+
+    })
+
+
+
+    const res = p.then((value) => {
+      console.log(value);
+      return "Hello Promise"
+    },(reason) => {
+      console.log(reason)
+    }).then((value) => {
+      console.log(value)
+      
+    })
+
+    console.log(p)
+    console.log('res',res)
+
+    let a = 1
+    setTimeout(() => {
+      a = 0
+    },3000)
+    while (a) {}
+    console.log(a)
+  </script>
+</body>
+</html>

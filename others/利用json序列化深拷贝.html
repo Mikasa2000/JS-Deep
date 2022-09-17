@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      name:'zs',
+      age:18,
+      hobby:['play','code'],
+      friends:{
+        name:'ls'
+      }
+    }
+
+    // 1.引用赋值
+    // let info = obj
+
+    // 2.浅拷贝
+    // let info = {}
+    // Object.assign(info,obj)
+    // let info = {...obj}
+
+
+    //3.深拷贝
+    // let info = JSON.parse(JSON.stringify(obj)) // 不能转化成函数
+
+    let info = JSON.parse(JSON.stringify(obj))
+
+    info.name = "zzzz"
+    info.friends.name = "ooooo"
+    info.hobby[2] = "bbb"
+    console.log("obj",obj)
+    console.log("info",info)
+  </script>
+</body>
+</html>

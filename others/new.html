@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * new的过程
+     * 
+     * 1.创建一个空对象
+     * 2.改变this指向，指向新的obj
+     * 3.设置原型链 新对象的__proto__指向老构造函数的prototype
+     * 4.返回新对象(构造函数中如果是基本类型，忽略；如果是引用类型，则返回)
+     * 
+     */
+    function Foo(age,name) {
+      this.name = name;
+      this.age = age;
+    }
+
+
+    function myNew(fn, ...args) {
+      var obj = {};
+      Object.setPrototypeOf(obj,fn.prototype);
+      // obj.__proto__ = fn.prtotype;
+      var result = fn.apply(obj,args);
+      return result instanceof Object ? result : obj
+
+    }
+
+    console.log(myNew(Foo, 18, "zs"))
+
+    
+  </script>
+</body>
+
+</html>
