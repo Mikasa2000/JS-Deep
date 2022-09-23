@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      position: relative;
+      /* overflow: auto; */
+      background-color: skyblue;
+    }
+
+
+    .item {
+      width: 200px;
+      height: 100px;
+      /* float: left; */
+      background-color: pink;
+      border: 1px solid black;
+      position: absolute;
+    }
+
+    .clearfix ::after{
+      content: "";
+      display: block;
+      clear: both;
+      height: 0px;
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+  <!-- 不能解决绝对定位元素的高度塌陷问题 -->
+  <div class="container clearfix">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+</body>
+</html>

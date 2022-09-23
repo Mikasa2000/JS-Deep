@@ -38,6 +38,7 @@ Boolean()
 * 对象在转number之前，会先转换为基础类型，再转换为number类型，这个过程称为ToPrimitive。
 * toString()
 * valueOf()
+
 ```js
 一.如果是 ToPrimitive(obj, Number)，处理步骤如下：
 
@@ -52,7 +53,7 @@ Boolean()
 2.否则，调用 toString 方法，如果返回一个原始值，则 JavaScript 将其返回。
 3.否则，调用 valueOf 方法，如果返回一个原始值，则 JavaScript 将其返回。
 4.否则，JavaScript 抛出一个类型错误异常。
-对象转字符串
+
 ```
 
 
@@ -65,20 +66,66 @@ Boolean()
 
 
 二. 当计算 value1 + value2
+
 1.lprim = ToPrimitive(value1)
 2.rprim = ToPrimitive(value2)
 3.如果 lprim 是字符串或者 rprim 是字符串，那么返回 ToString(lprim) 和 ToString(rprim)的拼接结果
 4.返回 ToNumber(lprim) 和 ToNumber(rprim)的运算结果
 
 
-三. ===
+三. ==
 // 在 == 运算中
-如果x,y的类型相同, 按照x === y的结果返回. // ===运算符的规格定义, 这个有兴趣的自己看下.
+1.如果x,y的类型相同, 按照x == y的结果返回. // ===运算符的规格定义, 这个有兴趣的自己看下.
 如果x,y类型不同
 
 2.1 如果x,y中一方是String, 另一方是Number, 将String类型的转成Number再比较
 2.2 如果x,y中有一方是Boolean类型, 将Boolean转成Number后再比较 // Number(true) -> 1; Number(false) -> 0
 2.3 如果x,y中有一方是Object类型, 另一方的类型是[String, Number, or Symbol]中的一个, 需要调用ToPrimitive()将Object转为基本类型后再比较.
+
+
+3.x是布尔值，判断ToNumber(x) == y
+
+4.y是布尔值，判断x ==ToNumber(y)
+
+5.x不是字符串或者数字，y是对象，判断x == ToPrimitive(y)
+6.x是对象，y不是字符串或者数字，判断ToPrimitive(x) == y
+
+
+如果x与y是同一类型：
+
+x是Undefined，返回true
+x是Null，返回true
+x是数字：
+x是NaN，返回false
+y是NaN，返回false
+x与y相等，返回true
+x是+0，y是-0，返回true
+x是-0，y是+0，返回true
+返回false
+
+
+x是字符串，完全相等返回true,否则返回false
+x是布尔值，x和y都是true或者false，返回true，否则返回false
+x和y指向同一个对象，返回true，否则返回false
+x是null并且y是undefined，返回true
+
+x是undefined并且y是null，返回true
+
+x是数字，y是字符串，判断x == ToNumber(y)
+
+x是字符串，y是数字，判断ToNumber(x) == y
+
+x是布尔值，判断ToNumber(x) == y
+
+y是布尔值，判断x ==ToNumber(y)
+
+x是字符串或者数字，y是对象，判断x == ToPrimitive(y)
+
+x是对象，y是字符串或者数字，判断ToPrimitive(x) == y
+
+返回false
+
+
 ```
 
 

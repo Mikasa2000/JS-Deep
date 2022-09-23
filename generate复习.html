@@ -8,8 +8,8 @@
   <title>test</title>
 </head>
 
-<body>
-  <div style="height: 6000px;"></div>
+<body style="height:10000px">
+  <button>dididid</button>
   <script>
     // Function.prototype.myCall = function(thisAgs,...ags) {
     //   let fn = this;
@@ -101,24 +101,27 @@
 
     // 节流1，定时器
     // 节流2，时间戳
-    function Ajax() {
-      console.log('发送了Ajax')
-    }
 
+
+    let btn = document.querySelector('button')
+    let count = 1;
     function throttle(fn, timeInterval) {
       let lastTime = 0;
       return function () {
         let nowTime = new Date().getTime();
         let remainTime = timeInterval - (nowTime - lastTime);
-        if (timeInterval <= 0) {
+        if (remainTime <= 0) {
           fn();
+          
           lastTime = nowTime;
         }
       }
     }
 
     // let ipt = document.querySelector('');
-    window.addEventListener('scroll', throttle(Ajax, 1))
+    window.addEventListener('scroll', throttle(function scrollFn() {
+      console.log('发送了Ajax',count++);
+    }, 3000))
 
 
 

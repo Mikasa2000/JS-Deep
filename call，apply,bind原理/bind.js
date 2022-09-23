@@ -1,4 +1,4 @@
-Function.prototype.myBind = function(thisArgs,argsArr) {
+Function.prototype.myBind = function(thisArgs,...argsArr) {
   let fn = this;
   thisArgs = thisArgs ? Object(thisArgs) : window;
 

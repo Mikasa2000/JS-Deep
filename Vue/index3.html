@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let data = {
+      name:'zs',
+      age:18,
+      arr:['1','2','3']
+    }
+
+    const oldArrayProty = Array.prototype;
+    const newArrayProty = Object.create(oldArrayProty);
+    ['push','pop','shift','unshift','splice','sort','reverse'].forEach(item => {
+      newArrayProty[item] = function() {
+        oldArrayProty.call(this,...args);
+      }
+    })
+
+
+    Observer(data)
+
+
+    function Observer(target) {
+      if(typeof target !== 'object' || typeof target == null) {
+        return target;
+      }
+      if(Array.isArray(target)) {
+        target.__proto__ = newArrayProty;
+      }
+
+     
+
+      for(let key in target) {
+        defineReactive(target, key, target[key])
+      }
+      
+
+      function defineReactive(target, key, value) {
+        Observer(value);
+        Object.defineProperty(target,key,{
+          get() {
+            return value;
+          },
+          set(newValue) {
+            Observer(value);
+            if(value !== newValue) {
+              value = newValue;
+            }
+          }
+        })
+      }
+
+
+    }
+
+    console.log(data)
+
+  </script>
+</body>
+</html>

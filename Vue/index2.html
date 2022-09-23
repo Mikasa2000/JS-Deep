@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+
+  <script>
+    const data = {
+      name:'zs',
+      age:18,
+      friend:{
+        name:'ls'
+      },
+      arr:['1','2','3']
+    }
+    
+    const oldArray = Array.prototype;
+    const newArray = Object.create(oldArray); // 原型式继承new.__proto__ = old.Prototype
+    ['push','pop','shift','splice','unshift'].forEach(item => {
+      newArray[item] = function() {
+        oldArray.call(this,...args);
+      }
+    })
+
+
+    Observer(data)
+
+
+    function Observer(target) {
+      // 判断是否是object类型
+      if(typeof target !== 'object' || typeof target == null) {
+        return target;
+      }
+      if(Array.isArray(target)) {
+        target.__proto__ = newArray;
+      }
+
+      for(let key in data) {
+        defineReactive(target, key, target[key]);
+      }
+
+    }
+
+    function defineReactive(target, key, value){
+      // 递归
+      Observer(value);
+      Object.defineProperty(target, key, {
+        get() {
+          return value;
+        },
+        set(newValue) {
+          Observer(newValue);
+          if(newValue !== value) {
+            value = newValue;
+          }
+        }
+      })
+    }
+  </script>
+</body>
+</html>

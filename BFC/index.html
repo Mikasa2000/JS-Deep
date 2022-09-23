@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFC</title>
+  <style>
+    .box1 {
+      height: 50px;
+      margin-bottom: 20px;
+      background-color: pink;
+    }
+
+    .box2 {
+      height: 100px;
+      margin-top: 50px;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <!-- 块级元素属于BFC，行内元素属于IFC -->
+  <!-- 环境上下文 Fomating context -->
+  <!-- 同一个BFC中形成了margin折叠 -->
+  <div class="box1"></div>
+  <div class="box2"></div>
+
+  <p>
+    <a href="#"></a>
+    <span></span>
+  </p>
+  
+</body>
+</html>
