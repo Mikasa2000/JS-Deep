@@ -17,12 +17,18 @@ async 属性和 defer 属性类似，也是会开启一个线程去下载 JS 文
 * 构建rendertree后进行painting -> display
 
 
-### 二.回流（重拍）
+### 二.回流（重排）
 回流就是说，当你页面中的部分或全部元素的几何属性（第一次页面渲染，浏览器窗口发生改变width,height,display，字体大小，激活css伪类）
+
+避免操作DOM，创建一个documentFragment或div，在它上面应用所有DOM操作，最后再把它添加到window.document。也可以在一个display:none的元素上进行操作，最终把它显示出来。因为display:none上的DOM操作不会引发回流和重绘。
+
 
 
 ### 三.重绘
 当页面中元素的样式不影响他在文档流中的位置（color,bgc,visibility）
+
+
+
 
 
 ### 四.v8引擎
